@@ -1,0 +1,25 @@
+{
+	"weekView": "Tydzień",
+	"monthView": "Miesiąc",
+	"dayView": "Dzień",
+	"todayButton": "Dzisiaj",
+	"openButton": "Otwórz",
+	"deleteButton": "Usuń",
+	"detailsLabel": "Szczegóły",
+	"allDayLabel": "Cały dzień",
+	"titleLabel": "Tytuł",
+	"saveButton": "Zapisz",
+	"cancelButton": "Anuluj",
+	"moreInformationLabel": "Więcej informacji",
+	"startDateLabel": "Data rozpoczęcia",
+	"endDateLabel": "Data zakończenia",
+	"repeatLabel": "Powtarzaj",
+	"notesLabel": "Notatki",
+	"notesLabel": "Notatki",
+	"confirmationDialog": {
+		"discardButton": "Odrzuć",
+		"confirmButton": "Potwierdź",
+		"deleteButton": "Usuń",
+		"cancelButton": "Anuluj"
+	}
+}

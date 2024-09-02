@@ -1,0 +1,37 @@
+{
+	"name": "w",
+	"private": true,
+	"version": "0.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"lint": "eslint .",
+		"preview": "vite preview",
+		"start": "vite",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject",
+		"serve": "vite preview"
+	},
+	"dependencies": {
+		"@devexpress/dx-react-core": "4.0.8",
+		"@devexpress/dx-react-scheduler": "^4.0.8",
+		"@devexpress/dx-react-scheduler-material-ui": "^4.0.8",
+		"@emotion/react": "^11.13.3",
+		"@emotion/styled": "^11.13.0",
+		"@mui/icons-material": "^5.16.7",
+		"@mui/lab": "^5.0.0-alpha.117",
+		"@mui/material": "^5.16.7",
+		"@mui/styled-engine-sc": "^6.0.1",
+		"@mui/x-date-pickers": "^5.0.15",
+		"@vitejs/plugin-react": "^4.3.1",
+		"date-fns": "^2.30.0",
+		"firebase": "^10.13.1",
+		"i18next": "^23.14.0",
+		"moment": "^2.30.1",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
+		"react-i18next": "^15.0.1",
+		"styled-components": "^6.1.13"
+	}
+}
