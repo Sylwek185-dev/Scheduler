@@ -4,7 +4,7 @@
 
 https://scheduler185185185.web.app/
 
-Aplikacja Kalendarium to aplikacja internetowa, która umożliwia zarządzanie wydarzeniami w prosty i intuicyjny sposób. Użytkownicy mogą dodawać, edytować i usuwać wydarzenia za pomocą wizualnego kalendarza. Aplikacja korzysta z Firebase do przechowywania danych o wydarzeniach.
+Scheduler to aplikacja internetowa, która umożliwia zarządzanie wydarzeniami w prosty i intuicyjny sposób. Użytkownicy mogą dodawać, edytować i usuwać wydarzenia za pomocą wizualnego kalendarza. Aplikacja korzysta z Firebase do przechowywania danych o wydarzeniach.
 
 ## Technologie
 
@@ -39,8 +39,8 @@ Upewnij się, że masz zainstalowane Git oraz Node.js na swoim komputerze. Jeśl
 ### Klonowanie repozytorium
 
 ```bash
-git clone https://github.com/TwójUżytkownik/moja-aplikacja-kalendarium.git
-cd moja-aplikacja-kalendarium
+git clone https://github.com/Sylwek185-dev/scheduler.git
+cd scheduler
 ```
 
 ### Kontakt
