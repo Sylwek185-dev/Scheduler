@@ -15,13 +15,12 @@ import {
 	EditRecurrenceMenu,
 	ConfirmationDialog,
 } from '@devexpress/dx-react-scheduler-material-ui';
-
 import {
 	ViewState,
 	EditingState,
 	IntegratedEditing,
 } from '@devexpress/dx-react-scheduler';
-
+import { useTranslation } from 'react-i18next';
 import {
 	collection,
 	addDoc,
@@ -29,49 +28,42 @@ import {
 	deleteDoc,
 	doc,
 } from 'firebase/firestore';
-
-import { db } from './firebase'; // Import Firebase z konfiguracji w innym pliku
-
-// Inicjalizacja Firebase i Firestore
+import { db } from './firebase';
+import './i18n';
 
 export default function App() {
+	const { t } = useTranslation(); // Hook do tłumaczenia
 	const [data, setData] = useState([]);
 	const [currentDate, setCurrentDate] = useState(
 		new Date().toISOString().slice(0, 10)
 	);
 	const [currentViewName, setCurrentViewName] = useState('Month');
 
-	// Funkcja do zapisywania wydarzeń do Firestor e
 	const saveEventToFirestore = async (event) => {
 		try {
 			const docRef = await addDoc(collection(db, 'events'), event);
 			return { id: docRef.id, ...event };
 		} catch (error) {
-			console.error('Błąd podczas zapisywania wydarzenia:', error);
+			console.error(t('errorSavingEvent'), error);
 		}
 	};
 
-	// Funkcja do pobierania wydarzeń z Firestore
 	const fetchEventsFromFirestore = async () => {
 		try {
 			const querySnapshot = await getDocs(collection(db, 'events'));
 			const events = [];
 			querySnapshot.forEach((doc) => {
 				const data = doc.data();
-
-				// Konwersja Timestamp na Date
 				const startDate = data.startDate.toDate();
 				const endDate = data.endDate.toDate();
-
 				events.push({ id: doc.id, ...data, startDate, endDate });
 			});
 			return events;
 		} catch (error) {
-			console.error('Błąd podczas pobierania wydarzeń:', error);
+			console.error(t('errorFetchingEvents'), error);
 		}
 	};
 
-	// Pobierz wydarzenia z Firestore przy ładowaniu aplikacji
 	useEffect(() => {
 		const fetchAndSetEvents = async () => {
 			const eventsFromFirestore = await fetchEventsFromFirestore();
@@ -87,7 +79,6 @@ export default function App() {
 			setData((prevData) => [...prevData, newEvent]);
 		}
 
-		// Logi dla innych przypadków:
 		if (changed) {
 			const updatedData = data.map((appointment) =>
 				changed[appointment.id]
@@ -106,7 +97,7 @@ export default function App() {
 			try {
 				await deleteDoc(doc(db, 'events', deleted));
 			} catch (error) {
-				console.error('Błąd podczas usuwania wydarzenia:', error);
+				console.error(t('errorDeletingEvent'), error);
 			}
 		}
 	};
@@ -122,18 +113,44 @@ export default function App() {
 				/>
 				<EditingState onCommitChanges={commitChanges} />
 				<IntegratedEditing />
-				<WeekView startDayHour={9} endDayHour={19} />
-				<DayView startDayHour={9} endDayHour={19} />
-				<MonthView />
+				<WeekView
+					startDayHour={9}
+					endDayHour={19}
+					displayName={t('weekView')}
+				/>
+				<DayView startDayHour={9} endDayHour={19} displayName={t('dayView')} />
+				<MonthView displayName={t('monthView')} />
 				<Toolbar />
 				<DateNavigator />
 				<ViewSwitcher />
-				<TodayButton />
+				<TodayButton messages={{ today: t('todayButton') }} />
 				<EditRecurrenceMenu />
 				<ConfirmationDialog />
 				<Appointments />
-				<AppointmentTooltip showOpenButton showDeleteButton />
-				<AppointmentForm />
+				<AppointmentTooltip
+					showOpenButton
+					showDeleteButton
+					messages={{
+						editLabel: t('editLabel'),
+						deleteLabel: t('deleteLabel'),
+						closeLabel: t('closeLabel'),
+					}}
+				/>
+				<AppointmentForm
+					messages={{
+						detailsLabel: t('detailsLabel'),
+						titleLabel: t('titleLabel'),
+						allDayLabel: t('allDayLabel'),
+						repeatLabel: t('repeatLabel'),
+						notesLabel: t('notesLabel'),
+						fromLabel: t('fromLabel'),
+						toLabel: t('toLabel'),
+						locationLabel: t('locationLabel'),
+						saveButton: t('saveButton'),
+						deleteButton: t('deleteButton'),
+						cancelButton: t('cancelButton'),
+					}}
+				/>
 			</Scheduler>
 		</Paper>
 	);
